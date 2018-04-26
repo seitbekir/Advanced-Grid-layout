@@ -1,4 +1,4 @@
-# Advenced-Grid-layout
+# Advanced-Grid-layout
 Grid that covers most of needed usecases.
 
 # How to use
