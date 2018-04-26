@@ -12,6 +12,7 @@ $section-columns-max: 3;
 $fixed-left-max: 2;
 $fixed-right-max: 2;
 $border-width: 1px;
+$section-padding: 15px;
 
 $sizes-list:
   xs 0 580px,
