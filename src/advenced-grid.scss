@@ -6,6 +6,7 @@ $fixed-left-max: 2 !default;
 $fixed-right-max: 2 !default;
 $border-color: grey !default;
 $border-width: 1px !default;
+$section-padding: 15px !default;
 
 $sizes-list:
   xs 0 580px,
@@ -152,11 +153,10 @@ div[class^='grid-'] {
   }
 }
 
-$padding-btw: 15px;
 div[class^='section-'] {
   display: grid;
-  grid-gap: $padding-btw;
-  margin-bottom: $padding-btw;
+  grid-gap: $section-padding;
+  margin-bottom: $section-padding;
 }
 
 @for $column-count from 1 through $section-columns-max {
