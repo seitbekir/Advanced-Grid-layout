@@ -81,7 +81,3 @@ Some HTML:
 ![Screenshot](https://i.snag.gy/yIHC4q.jpg)
 
 [CodePen](https://codepen.io/anon/pen/KRgbgw?editors=1100)
-
-# Performance
-
-It compiles very slow, so recommendation to create a script, precompile and use it precompiled. For 12x grid it may take 15 sec to get css
