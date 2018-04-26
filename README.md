@@ -21,7 +21,7 @@ $sizes-list:
   xl 1200px 100000px;
 
 // Import scss script with all predefinitions
-@import 'src/advenced-grid.scss'
+@import 'src/advenced-grid.scss';
 
 // Describe grid view
 body {
@@ -79,7 +79,7 @@ Some HTML:
 ## Screenshot from CodePen
 ![Screenshot](https://i.snag.gy/yIHC4q.jpg)
 
-[CodePen](https://codepen.io/seitbekir/pen/qVNJzy/?editors=1000)
+[CodePen](https://codepen.io/anon/pen/KRgbgw?editors=1100)
 
 # Performance
 
