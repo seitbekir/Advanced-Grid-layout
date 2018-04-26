@@ -87,41 +87,11 @@ div[class^='grid-'] {
     }
   }
 }
-
 @for $column-count from 1 through $columns-max {
   $columns: repeat($column-count, 1fr);
-
   [class^='grid-#{$column-count}x'] {
     margin: $border-width;
     grid-template-columns: $columns;
-
-    @for $subcolumn-count from 1 through $column-count + $fixed-sum {
-      .cell-#{$subcolumn-count}x {
-        grid-column: span $subcolumn-count;
-        
-        // Support Medias
-        @each $size1 in $sizes-list {
-          @for $subcolumn-count from 1 through $column-count + $fixed-sum {
-            @include media($size1) {
-              &[class*='#{nth($size1, 1)}-#{$subcolumn-count}x'] {
-                grid-column: span $subcolumn-count;
-              }
-            }
-          }
-          @each $size2 in $sizes-list {
-            @if nth($size1, 2) < nth($size2, 2) {
-              @for $subcolumn-count from 1 through $column-count + 2 {
-                @include media-btw($size1, $size2) {
-                  &[class*='#{nth($size1, 1)}:#{nth($size2, 1)}-#{$subcolumn-count}x'] {
-                    grid-column: span $subcolumn-count;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
 
     @each $height in $heights {
       $h: nth($height, 2);
@@ -141,12 +111,41 @@ div[class^='grid-'] {
             @for $_j from 0 to $j {
               $cc: $cc $h;
             }
-
             &[class*='-f:#{$i}:#{$j}'] {
               grid-template-columns: $cc;
             }
           }
           $c: $columns;
+        }
+      }
+    }
+  }
+}
+[class^='grid-'] {
+  @for $subcolumn-count from 1 through $columns-max + $fixed-sum {
+    .cell-#{$subcolumn-count}x {
+      grid-column: span $subcolumn-count;
+    }
+  }
+  // Support Medias
+  [class^='cell-'] {
+    @each $size1 in $sizes-list {
+      @for $subcolumn-count from 1 through $columns-max + $fixed-sum {
+        @include media($size1) {
+          &[class*='#{nth($size1, 1)}-#{$subcolumn-count}x'] {
+            grid-column: span $subcolumn-count;
+          }
+        }
+      }
+      @each $size2 in $sizes-list {
+        @if nth($size1, 2) < nth($size2, 2) {
+          @for $subcolumn-count from 1 through $columns-max + 2 {
+            @include media-btw($size1, $size2) {
+              &[class*='#{nth($size1, 1)}:#{nth($size2, 1)}-#{$subcolumn-count}x'] {
+                grid-column: span $subcolumn-count;
+              }
+            }
+          }
         }
       }
     }
@@ -158,34 +157,28 @@ div[class^='section-'] {
   grid-gap: $section-padding;
   margin-bottom: $section-padding;
 }
-
 @for $column-count from 1 through $section-columns-max {
   $columns: repeat($column-count, 1fr);
-
   [class^='section-#{$column-count}x'] {
     grid-template-columns: $columns;
-    
-    @include media(nth($sizes-list, 1)) {
-      [class^='section-'] {
-        grid-template-columns: repeat(1, 1fr);
-      }
-    }
-    // Support Medias
-    @each $size1 in $sizes-list {
-      @for $subcolumn-count from 1 through $column-count {
-        @include media($size1) {
-          &[class*='#{nth($size1, 1)}-#{$subcolumn-count}x'] {
-            grid-template-columns: repeat($subcolumn-count, 1fr);
-          }
+  }
+}
+[class^='section-'] {
+  // Support Medias
+  @each $size1 in $sizes-list {
+    @for $subcolumn-count from 1 through $section-columns-max {
+      @include media($size1) {
+        &[class*='#{nth($size1, 1)}-#{$subcolumn-count}x'] {
+          grid-template-columns: repeat($subcolumn-count, 1fr);
         }
       }
-      @each $size2 in $sizes-list {
-        @if nth($size1, 2) < nth($size2, 2) {
-          @for $subcolumn-count from 1 through $column-count {
-            @include media-btw($size1, $size2) {
-              &[class*='#{nth($size1, 1)}:#{nth($size2, 1)}-#{$subcolumn-count}x'] {
-                grid-template-columns: repeat($subcolumn-count, 1fr);
-              }
+    }
+    @each $size2 in $sizes-list {
+      @if nth($size1, 2) < nth($size2, 2) {
+        @for $subcolumn-count from 1 through $section-columns-max {
+          @include media-btw($size1, $size2) {
+            &[class*='#{nth($size1, 1)}:#{nth($size2, 1)}-#{$subcolumn-count}x'] {
+              grid-template-columns: repeat($subcolumn-count, 1fr);
             }
           }
         }
